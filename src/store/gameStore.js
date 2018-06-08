@@ -1,18 +1,10 @@
-import { observable, action, computed } from 'mobx';
-import {
-	getApplications,
-	getApplication,
-	createApplication,
-	getApplicationPipelines,
-	getApplicationPipeline,
-	getApplicationLogo
-} from '../api/core/applications';
+import { getGames, getGame } from '../api/games';
 import { DomainInstanceStore, DomainInstance } from './domainInstanceStore';
 
 
 export class GameStore extends DomainInstanceStore {
 	constructor() {
-		super(Application, getGames, getGameDetails);
+		super(Game, getGames, getGame); // eslint-disable-line no-this-before-super
 	}
 
 	getGames() {
@@ -24,17 +16,6 @@ export class GameStore extends DomainInstanceStore {
 	}
 }
 
-export class Application extends DomainInstance {
-	/*
-	identityId   = null;
-	name         = '';
-	stage        = '';
-	createdAt    = null;
-	modifiedAt   = null;
-	clientSecret = '';
-	scopes       = null;
-	redirectUris = [];
-	logo         = null;
-	*/
+export class Game extends DomainInstance {
 
 }

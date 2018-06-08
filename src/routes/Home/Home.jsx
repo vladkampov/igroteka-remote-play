@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { observer, inject } from 'mobx-react';
 
-export default () => (
-  <div>
-    Homepage
-  </div>
-);
+
+@inject('gameStore')
+@observer
+class Home extends Component {
+  componentDidMount() {
+    const { gameStore } = this.props;
+
+    gameStore.getGames();
+  }
+
+  render() {
+    return (
+      <div>
+        Homepage
+      </div>
+    );
+  }
+}
+  
+
+export default Home;

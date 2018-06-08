@@ -7,7 +7,7 @@ import IntlProvider from './components/IntlProvider';
 import Router from './routes';
 import UiStore from './store/uiStore';
 import DomainStore from './store/domainStore';
-import './index.scss';
+import './index.css';
 
 addLocaleData([...en]);
 
