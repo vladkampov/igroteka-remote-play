@@ -1,4 +1,13 @@
+import React from 'react';
+import { observer, inject } from 'mobx-react';
 import { IntlProvider } from 'react-intl';
 
-// TODO: Move intl value to store
-export default IntlProvider;
+const ObserverIntlProider = ({ uiStore: { locale, localeMessages }, children }) => {
+  return (
+    <IntlProvider locale={locale} messages={localeMessages} >
+      {children}
+    </IntlProvider>
+  );
+}
+
+export default inject('uiStore')(observer(ObserverIntlProider));
