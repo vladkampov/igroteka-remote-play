@@ -22,8 +22,8 @@ export class DomainInstanceStore {
 	@action getInstances() {
 		this.isLoading = true;
 
-		return this.getInstancesCb().then(instances => {
-			this.instances = instances.map(i => new this.InstanceClass(this, i));
+		return this.getInstancesCb().then(({ data }) => {
+			this.instances = data.map(i => new this.InstanceClass(this, i));
 			this.isLoading = false;
 		});
 	}
@@ -35,14 +35,14 @@ export class DomainInstanceStore {
 			this.isLoading = true;
 		}
 
-		return this.getInstanceCb(id).then(inst => {
-			const instance = new this.InstanceClass(this, inst); // eslint-disable-line no-use-before-define
+		return this.getInstanceCb(id).then(({ data }) => {
+			const instance = new this.InstanceClass(this, data); // eslint-disable-line no-use-before-define
 
 			if (!this.activeInstance.id) {
 				this.instances.push(instance);
 			}
 			else {
-				this.activeInstance.fromJSON(inst);
+				this.activeInstance.fromJSON(data);
 			}
 
 			this.isLoading = false;

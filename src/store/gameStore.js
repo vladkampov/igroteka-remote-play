@@ -17,5 +17,13 @@ export class GameStore extends DomainInstanceStore {
 }
 
 export class Game extends DomainInstance {
-
+	/*
+		{
+			id,
+			name,
+			description,
+			consoles: ['id', ...],
+			avalaible
+		}
+	*/
 }
