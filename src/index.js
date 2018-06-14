@@ -5,7 +5,7 @@ import { addLocaleData } from 'react-intl';
 import enLang from 'react-intl/locale-data/en';
 import ruLang from 'react-intl/locale-data/ru';
 import ukLang from 'react-intl/locale-data/uk';
-import IntlProvider from './components/IntlProvider';
+import { IntlProvider } from './components';
 import Router from './routes';
 import UiStore from './store/uiStore';
 import DomainStore from './store/domainStore';

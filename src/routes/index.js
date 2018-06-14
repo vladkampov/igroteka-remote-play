@@ -18,8 +18,8 @@ class Routes extends Component {
     return (
       <Router history={history}>
         <Switch>
-          <Route path="/" exact component={Wrapped.Home} />
-          <Route path="/*" component={Wrapped.NotFound} />
+          <Route path="/not-found" component={Wrapped.NotFound} />
+          <Route path="/:listType?" exact component={Wrapped.Home} />
         </Switch>
       </Router>
     );

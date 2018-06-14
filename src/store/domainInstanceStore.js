@@ -2,6 +2,8 @@ import { observable, computed, action } from 'mobx';
 
 export class DomainInstanceStore {
 	@observable isLoading = false;
+	@observable loadingError = false;
+	@observable filter = '';
 	@observable instances = [];
 	@observable activeInstanceId = ''; // correspond to id of instance on details page
 
@@ -19,12 +21,23 @@ export class DomainInstanceStore {
 		return this.instances.find(i => i.id === this.activeInstanceId) || new this.InstanceClass(this, {});
 	}
 
+	@computed get filteredInstances() {
+		return this.instances.filter(item => item.name.toLowerCase().includes(this.filter.toLowerCase()));
+	}
+
+	@action setFilter = value => {
+		this.filter = value;
+	}
+
 	@action getInstances() {
 		this.isLoading = true;
 
 		return this.getInstancesCb().then(({ data }) => {
 			this.instances = data.map(i => new this.InstanceClass(this, i));
 			this.isLoading = false;
+		}).catch(error => {
+			this.isLoading = false;
+			this.loadingError = true;
 		});
 	}
 

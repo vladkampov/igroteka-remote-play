@@ -24,18 +24,14 @@ export const requestHandlers = { get, post, put, patch, del };
 export default cb => cb(requestHandlers)
   .then(response => pick(response, ['data', 'status']))
   .catch(error => {
-    error.response ?
-      Promise.reject({ error: true, ...pick(error.response, ['data', 'status']) }) :
-      Promise.reject({ error: error.message })
-
     if (error.error) {
       if (error.status === 401) { // UNAUTHORIZED
-        console.error(error);
         // TODO: handle the unauthorized
       }
     } else {
-      console.error(error);
     }
 
-    return error;
+    return error.response ?
+        Promise.reject({ error: true, ...pick(error.response, ['data', 'status']) }) :
+        Promise.reject({ error: error.message });
   });
