@@ -76,6 +76,7 @@
         "balanced": true
       }
     }],
+    "prefer-promise-reject-errors": "off",
     "prefer-template": "warn",
     "prefer-const": ["warn", {
       "destructuring": "any",

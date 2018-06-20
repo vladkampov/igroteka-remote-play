@@ -31,7 +31,7 @@ export default class UserStore {
       .catch(err => {
         this.isLoading = false;
         this.loadingError = true;
-        return err;
+        return Promise.reject(err);
       });
   }
 

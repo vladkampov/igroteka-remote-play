@@ -31,6 +31,6 @@ export default cb => cb(requestHandlers)
     }
 
     return error.response ?
-      Promise.reject(new Error({ error: true, ...pick(error.response, ['data', 'status']) })) :
-      Promise.reject(new Error({ error: error.message }));
+      Promise.reject({ error: true, ...pick(error.response, ['data', 'status']) }) :
+      Promise.reject({ error: error.message });
   });

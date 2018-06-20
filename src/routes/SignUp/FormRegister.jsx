@@ -4,7 +4,7 @@ import { Button, Alert } from 'react-bootstrap';
 import { reactiveMobxForm, Control } from 'reactive-mobx-form';
 import { ReactiveFormControl } from '../../components';
 
-@reactiveMobxForm('formLogin', {
+@reactiveMobxForm('formRegister', {
   schema: {
     username: ['', 'required|max:255|min:3'],
     email: ['', 'required|max:255|min:3|email'],
