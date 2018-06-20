@@ -4,12 +4,14 @@ import { Button, Alert } from 'react-bootstrap';
 import { reactiveMobxForm, Control } from 'reactive-mobx-form';
 import { ReactiveFormControl } from '../../components';
 
-@reactiveMobxForm('formLogin', { schema: {
-  username: ['', 'required|max:255|min:3'],
-  email: ['', 'required|max:255|min:3|email'],
-  password: ['', 'required|max:20|min:6|same:password-check'],
-  'password-check': ['', 'required|max:20|min:6|same:password'],
-}})
+@reactiveMobxForm('formLogin', {
+  schema: {
+    username: ['', 'required|max:255|min:3'],
+    email: ['', 'required|max:255|min:3|email'],
+    password: ['', 'required|max:20|min:6|same:password-check'],
+    'password-check': ['', 'required|max:20|min:6|same:password'],
+  },
+})
 @injectIntl
 class FormRegister extends Component {
   render() {
@@ -22,7 +24,7 @@ class FormRegister extends Component {
             component={ReactiveFormControl}
             type="text"
             label={intl.formatMessage({ id: 'register.form.username' })}
-          /> 
+          />
         </div>
         <div>
           <Control
@@ -30,7 +32,7 @@ class FormRegister extends Component {
             component={ReactiveFormControl}
             type="text"
             label={intl.formatMessage({ id: 'register.form.email' })}
-          /> 
+          />
         </div>
         <div>
           <Control

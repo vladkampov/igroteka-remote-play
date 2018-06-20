@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import { Grid, Row, Col } from 'react-bootstrap';
-import { Submenu, Card } from '../../components';
+import { Submenu, Card, Loader } from '../../components';
 
 
 @inject('gameStore', 'consoleStore')
@@ -9,13 +9,13 @@ import { Submenu, Card } from '../../components';
 class Home extends Component {
   componentDidMount() {
     const { gameStore, consoleStore, history, match: { params: { listType } } } = this.props;
-    
+
     if (!listType) {
       history.push('/catalog/consoles');
     } else if (listType !== 'consoles' && listType !== 'games') {
       history.push('/not-found');
     }
-    
+
     consoleStore.getConsoles();
     gameStore.getGames();
   }
@@ -25,7 +25,7 @@ class Home extends Component {
     const { filteredInstances } = listType === 'games' ? gameStore : consoleStore;
 
     if (gameStore.isLoading || consoleStore.isLoading) {
-      return <div>Loading</div>
+      return <Loader />;
     }
 
     return filteredInstances.map(instance => (
@@ -49,6 +49,6 @@ class Home extends Component {
     );
   }
 }
-  
+
 
 export default Home;

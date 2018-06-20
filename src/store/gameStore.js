@@ -3,27 +3,27 @@ import { DomainInstanceStore, DomainInstance } from './domainInstanceStore';
 
 
 export class GameStore extends DomainInstanceStore {
-	constructor() {
-		super(Game, getGames, getGame); // eslint-disable-line no-this-before-super
-	}
+  constructor() {
+    super(Game, getGames, getGame); // eslint-disable-line no-this-before-super
+  }
 
-	getGames() {
-		this.getInstances();
-	}
+  getGames() {
+    this.getInstances();
+  }
 
-	getGameDetails(id) {
-		this.getInstance(id);
-	}
+  getGameDetails(id) {
+    this.getInstance(id);
+  }
 }
 
 export class Game extends DomainInstance {
-	/*
-		{
-			id,
-			name,
-			description,
-			consoles: ['id', ...],
-			avalaible
-		}
-	*/
+  /*
+    {
+      id,
+      name,
+      description,
+      consoles: ['id', ...],
+      avalaible
+    }
+  */
 }

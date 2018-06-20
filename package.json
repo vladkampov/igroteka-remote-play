@@ -54,7 +54,8 @@
     "webpack": "3.8.1",
     "webpack-dev-server": "2.9.4",
     "webpack-manifest-plugin": "1.3.2",
-    "whatwg-fetch": "2.0.3"
+    "whatwg-fetch": "2.0.3",
+    "mobx-react": "^5.2.3"
   },
   "scripts": {
     "start": "node scripts/start.js",
@@ -64,7 +65,7 @@
   "devDependencies": {
     "babel-plugin-transform-decorators": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
-    "mobx-react": "^5.2.1"
+    "eslint-config-airbnb": "^16.1.0"
   },
   "babel": {
     "plugins": [
@@ -107,8 +108,5 @@
       "node",
       "mjs"
     ]
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   }
 }

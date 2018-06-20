@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx';
 import { configureValidator } from 'reactive-mobx-form';
-import { localStorage }  from '../utils';
+import { localStorage } from '../utils';
 import * as locales from '../locales';
 
 
@@ -21,7 +21,8 @@ export default class UiStore {
     const { location } = window;
     const detectors = [
       () => (location && [location.pathname.replace('/', '')]),
-      () => (location && location.search ? [(location.search.match(/((locale)|(lang))=(\w+)/) || [])[4]] : []),
+      () => (location && location.search ?
+        [(location.search.match(/((locale)|(lang))=(\w+)/) || [])[4]] : []),
       () => (localStorage ? [localStorage.getItem('lang'), localStorage.getItem('locale')] : []),
       () => (navigator ? [...(navigator.languages || []), navigator.userLanguage, navigator.language] : []),
       () => ['en', 'uk', 'ru'],
@@ -29,8 +30,7 @@ export default class UiStore {
 
     return detectors
       .reduce((locale, detector) =>
-        locale || detector().filter(v => !!v).filter(v => supported.includes(v))[0], ''
-      );
+        locale || detector().filter(v => !!v).filter(v => supported.includes(v))[0], '');
   }
 
   @action changeLanguage = lang => {

@@ -46,10 +46,15 @@ const Header = ({ userStore, history }) => (
               <MenuItem eventKey={6.1}><FormattedMessage id="header.profile" /></MenuItem>
             </LinkContainer>
             <MenuItem divider />
-            <MenuItem onClick={() => {
-              userStore.logout();
-              history.push('/');
-            }} eventKey={6.2}><FormattedMessage id="header.logout" /></MenuItem>
+            <MenuItem
+              eventKey={6.2}
+              onClick={() => {
+                userStore.logout();
+                history.push('/');
+              }}
+            >
+              <FormattedMessage id="header.logout" />
+            </MenuItem>
           </NavDropdown>
         ) : (
           <Fragment>

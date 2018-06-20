@@ -4,10 +4,12 @@ import { Button, Alert } from 'react-bootstrap';
 import { reactiveMobxForm, Control } from 'reactive-mobx-form';
 import { ReactiveFormControl } from '../../components';
 
-@reactiveMobxForm('formLogin', { schema: {
-  email: ['', 'required|max:255|min:3'],
-  password: ['', 'required|max:20|min:6'],
-}})
+@reactiveMobxForm('formLogin', {
+  schema: {
+    email: ['', 'required|max:255|min:3'],
+    password: ['', 'required|max:20|min:6'],
+  },
+})
 @injectIntl
 class FormLogin extends Component {
   render() {
@@ -21,7 +23,7 @@ class FormLogin extends Component {
             component={ReactiveFormControl}
             type="text"
             label={intl.formatMessage({ id: 'login.form.identifier' })}
-          /> 
+          />
         </div>
         <div>
           <Control

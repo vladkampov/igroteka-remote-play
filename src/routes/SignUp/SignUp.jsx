@@ -1,13 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { inject } from 'mobx-react';
-import { Grid } from "react-bootstrap";
+import { Grid } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import FormRegister from './FormRegister';
 
 @inject('userStore', 'formStore')
 class SignUp extends Component {
-  state = { error: null }
-
   handleSubmit = data => {
     const { userStore: { register }, history } = this.props;
 

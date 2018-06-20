@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, FormControl, ControlLabel, HelpBlock } from "react-bootstrap";
+import { FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
 
 export default ({ input, meta, label, name, ...props }) => (
   <FormGroup controlId={name} validationState={meta.touched && !meta.valid && !meta.focused ? 'error' : null}>

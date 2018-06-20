@@ -39,4 +39,4 @@ export default {
   setItem,
   getItem,
   removeItem,
-}
+};

@@ -1,10 +1,12 @@
 import React from 'react';
 import { Grid } from 'react-bootstrap';
 
-export default () => (
-  <div className="">
+const Profile = () => (
+  <div className="Profile">
     <Grid>
-      Homepage
+      Profile page
     </Grid>
   </div>
 );
+
+export default Profile;

@@ -7,9 +7,9 @@ import { LinkContainer } from 'react-router-bootstrap';
 @injectIntl
 @inject('gameStore', 'consoleStore')
 class Submenu extends Component {
-  onSearch = ({ target: { value} }) => {
+  onSearch = ({ target: { value } }) => {
     const { gameStore, consoleStore, listType } = this.props;
-    
+
     const { setFilter } = listType === 'games' ? gameStore : consoleStore;
     setFilter(value);
   }
@@ -32,13 +32,17 @@ class Submenu extends Component {
           </Nav>
           <Navbar.Form pullRight>
             <FormGroup>
-              <FormControl type="text" placeholder={intl.formatMessage({ id: 'submenu.search' })} onChange={this.onSearch} />
+              <FormControl
+                type="text"
+                placeholder={intl.formatMessage({ id: 'submenu.search' })}
+                onChange={this.onSearch}
+              />
             </FormGroup>
           </Navbar.Form>
         </Navbar>
       </div>
     );
-  };
+  }
 }
 
 export default Submenu;
