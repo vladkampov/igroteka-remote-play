@@ -6,11 +6,11 @@ import { login, register } from '../api/user';
 export class UserStore {
   constructor() {
     const token = localStorage.getItem('token');
-    const userId = localStorage.getItem('user_id');
+    const user = JSON.parse(localStorage.getItem('user'));
 
-    if (token && userId) {
+    if (token && user) {
       this.token = token;
-      this.user = userId;
+      this.user = user;
       updateApi({ headers: { 'Authorization': `Bearer ${token}` } });
     }
   }
@@ -22,7 +22,7 @@ export class UserStore {
     this.user = data.user;
     this.token = data.jwt;
     localStorage.setItem('token', data.jwt);
-    localStorage.setItem('user_id', data.user._id);
+    localStorage.setItem('user', JSON.stringify(data.user));
     updateApi({ headers: { 'Authorization': `Bearer ${data.jwt}` } })
 
     return data;
@@ -36,7 +36,7 @@ export class UserStore {
     this.user = null;
     updateApi({ headers: {} })
     localStorage.removeItem('token');
-    localStorage.removeItem('user_id');
+    localStorage.removeItem('user');
   }
 
   @action register = data => register(data)

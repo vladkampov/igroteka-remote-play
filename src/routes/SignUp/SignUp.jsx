@@ -10,9 +10,9 @@ class SignUp extends Component {
 
   handleSubmit = data => {
     const { userStore: { register }, history } = this.props;
-    console.log(data);
+
     delete data['password-check'];
-    console.log(data);
+
     register(data)
       .then(() => history.push('/profile'))
       .catch(({ data: { message: error } }) => Promise.reject(error));

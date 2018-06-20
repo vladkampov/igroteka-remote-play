@@ -6,6 +6,7 @@ export default {
   messages: flattenObject({
     header: {
       home: 'Homepage',
+      catalog: 'Catalog',
       about: 'About',
       download: 'Download',
       pay: 'Pay',

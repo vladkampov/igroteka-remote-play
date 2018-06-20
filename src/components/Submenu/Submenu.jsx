@@ -20,10 +20,10 @@ class Submenu extends Component {
       <div className="Submenu">
         <Navbar inverse>
           <Nav>
-            <LinkContainer to="/consoles">
+            <LinkContainer to="/catalog/consoles">
               <NavItem eventKey={7}><FormattedMessage id="submenu.consoles" /></NavItem>
             </LinkContainer>
-            <LinkContainer to="/games">
+            <LinkContainer to="/catalog/games">
               <NavItem eventKey={8}><FormattedMessage id="submenu.games" /></NavItem>
             </LinkContainer>
             <NavItem eventKey={9} href="#" className="btn-demo">

@@ -12,15 +12,15 @@ const Header = ({ userStore, history }) => (
     <Navbar inverse>
       <Navbar.Header>
         <Navbar.Brand>
-          <Link to="/home" className="navbar-brand">
+          <Link to="/" className="navbar-brand">
             Logo
           </Link>
         </Navbar.Brand>
       </Navbar.Header>
       <Nav>
-        <LinkContainer to="/">
+        <LinkContainer to="/catalog/consoles">
           <NavItem eventKey={1}>
-            <FormattedMessage id="header.home" />
+            <FormattedMessage id="header.catalog" />
           </NavItem>
         </LinkContainer>
         <LinkContainer to="/about">
@@ -41,8 +41,10 @@ const Header = ({ userStore, history }) => (
       </Nav>
       <Nav pullRight>
         {userStore.user ? (
-          <NavDropdown eventKey={6} title="User" id="basic-nav-dropdown">
-            <MenuItem eventKey={6.1}><FormattedMessage id="header.profile" /></MenuItem>
+          <NavDropdown eventKey={6} title={userStore.user.username} id="basic-nav-dropdown">
+            <LinkContainer to="/profile">
+              <MenuItem eventKey={6.1}><FormattedMessage id="header.profile" /></MenuItem>
+            </LinkContainer>
             <MenuItem divider />
             <MenuItem onClick={() => {
               userStore.logout();

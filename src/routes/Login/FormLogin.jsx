@@ -12,7 +12,7 @@ import { ReactiveFormControl } from '../../components';
 class FormLogin extends Component {
   render() {
     const { submit, intl, valid, submitting, submitError } = this.props;
-    console.log(this.props);
+
     return (
       <form onSubmit={submit}>
         <div>
