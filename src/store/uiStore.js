@@ -1,4 +1,5 @@
 import { observable, action } from 'mobx';
+import { configureValidator } from 'reactive-mobx-form';
 import { localStorage }  from '../utils';
 import * as locales from '../locales';
 
@@ -9,6 +10,7 @@ export default class UiStore {
 
     this.locale = detectedLang;
     this.localeMessages = locales[detectedLang].messages;
+    configureValidator({ language: detectedLang });
   }
 
   @observable locale = '';
@@ -36,5 +38,6 @@ export default class UiStore {
 
     this.locale = lang;
     this.localeMessages = locales[lang].messages;
+    configureValidator({ language: lang });
   };
 }

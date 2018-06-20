@@ -28,9 +28,9 @@ class Home extends Component {
       return <div>Loading</div>
     }
 
-    return filteredInstances.map(game => (
-      <Col md={4} key={game.id}>
-        <Card {...game} />
+    return filteredInstances.map(instance => (
+      <Col md={4} key={instance.id}>
+        <Card type={listType} {...instance} />
       </Col>
     ));
   }
