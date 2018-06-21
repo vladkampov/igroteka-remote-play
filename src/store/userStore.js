@@ -1,7 +1,7 @@
 import { observable, action, computed } from 'mobx';
 import { updateApi } from '../api';
 import { localStorage } from '../utils';
-import { login, register, getUser } from '../api/user';
+import { login, register, getUser, resetPassword } from '../api/user';
 
 export default class UserStore {
   constructor() {
@@ -48,24 +48,31 @@ export default class UserStore {
   @action login = data => this.makeCall(login, data)
     .then(this.saveUserData);
 
-  @action logout = () => {
+  @action logout = () => new Promise(resolve => {
     this.token = null;
     this.user = null;
     updateApi({ headers: {} });
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-  }
+    resolve();
+  });
 
   @action register = data => this.makeCall(register, data)
     .then(this.saveUserData);
 
-  @action getUser = () => this.makeCall(getUser, this.user._id)
+  @action getUser = () => this.makeCall(getUser, this.userId)
     .then(data => {
       this.user = data;
       localStorage.setItem('user', JSON.stringify(data));
     });
 
+  @action resetPassword = data => this.makeCall(resetPassword, data);
+
   @computed get authenticated() {
     return !!(this.user && this.token);
+  }
+
+  @computed get userId() {
+    return this.user ? this.user._id : null;
   }
 }

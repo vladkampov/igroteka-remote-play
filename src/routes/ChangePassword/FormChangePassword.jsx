@@ -4,43 +4,37 @@ import { Button, Alert } from 'react-bootstrap';
 import { reactiveMobxForm, Control } from 'reactive-mobx-form';
 import { ReactiveFormControl } from '../../components';
 
-@reactiveMobxForm('formRegister', {
+@reactiveMobxForm('formChangePassword', {
   schema: {
-    username: ['', 'required|max:255|min:3'],
-    email: ['', 'required|max:255|min:3|email'],
-    password: ['', 'required|max:20|min:6|same:password-check'],
-    'password-check': ['', 'required|max:20|min:6|same:password'],
+    password: ['', 'required|max:20|min:6|same:passwordConfirmation'],
+    passwordConfirmation: ['', 'required|max:20|min:6|same:password'],
   },
 })
 @injectIntl
-class FormRegister extends Component {
+class FormChangePassword extends Component {
   render() {
     const { submit, intl, valid, submitting, submitError } = this.props;
+
+
     return (
       <form onSubmit={submit}>
         <Control
-          name="username"
+          name="code"
           component={ReactiveFormControl}
           type="text"
-          label={intl.formatMessage({ id: 'register.form.username' })}
-        />
-        <Control
-          name="email"
-          component={ReactiveFormControl}
-          type="text"
-          label={intl.formatMessage({ id: 'register.form.email' })}
+          hidden
         />
         <Control
           name="password"
           component={ReactiveFormControl}
           type="password"
-          label={intl.formatMessage({ id: 'register.form.password' })}
+          label={intl.formatMessage({ id: 'changePassword.form.password' })}
         />
         <Control
-          name="password-check"
+          name="passwordConfirmation"
           component={ReactiveFormControl}
           type="password"
-          label={intl.formatMessage({ id: 'register.form.passwordCheck' })}
+          label={intl.formatMessage({ id: 'changePassword.form.passwordConfirmation' })}
         />
         {submitError && (
           <Alert bsStyle="danger">
@@ -48,11 +42,11 @@ class FormRegister extends Component {
           </Alert>
         )}
         <Button bsSize="large" type="submit" disabled={!valid || submitting}>
-          <FormattedMessage id="register.form.submit" />
+          <FormattedMessage id="changePassword.form.submit" />
         </Button>
       </form>
     );
   }
 }
 
-export default FormRegister;
+export default FormChangePassword;

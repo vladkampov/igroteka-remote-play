@@ -9,28 +9,13 @@ import { Loader } from '../../components';
 @observer
 class Profile extends Component {
   componentDidMount() {
-    const { userStore } = this.props;
-
-    userStore.getUser();
-  }
-
-  discardUser = () => {
-    const { userStore, history } = this.props;
-
-    userStore.logout()
-      .then(() => history.push('/login'));
-
-    return null;
+    this.props.userStore.getUser();
   }
 
   render() {
     const { userStore } = this.props;
 
-    if (!userStore.user) {
-      if (!userStore.isLoading) {
-        this.discardUser();
-      }
-
+    if (userStore.isLoading) {
       return <Loader />;
     }
 

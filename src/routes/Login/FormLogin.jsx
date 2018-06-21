@@ -17,22 +17,18 @@ class FormLogin extends Component {
 
     return (
       <form onSubmit={submit}>
-        <div>
-          <Control
-            name="identifier"
-            component={ReactiveFormControl}
-            type="text"
-            label={intl.formatMessage({ id: 'login.form.identifier' })}
-          />
-        </div>
-        <div>
-          <Control
-            name="password"
-            component={ReactiveFormControl}
-            type="password"
-            label={intl.formatMessage({ id: 'login.form.password' })}
-          />
-        </div>
+        <Control
+          name="identifier"
+          component={ReactiveFormControl}
+          type="text"
+          label={intl.formatMessage({ id: 'login.form.identifier' })}
+        />
+        <Control
+          name="password"
+          component={ReactiveFormControl}
+          type="password"
+          label={intl.formatMessage({ id: 'login.form.password' })}
+        />
         {submitError && (
           <Alert bsStyle="danger">
             {submitError}

@@ -45,5 +45,13 @@ export default {
       password: 'Password',
       changePassword: 'Change',
     },
+    changePassword: {
+      title: 'Change Password',
+      form: {
+        password: 'Password',
+        passwordConfirmation: 'Password confirmation',
+        submit: 'Change Password',
+      },
+    },
   }),
 };

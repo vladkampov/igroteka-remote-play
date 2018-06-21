@@ -1,5 +1,6 @@
 import axios from 'axios';
 import pick from 'lodash.pick';
+import { localStorage } from '../utils';
 
 let axiosInstance = axios.create();
 
@@ -25,8 +26,17 @@ export default cb => cb(requestHandlers)
   .then(response => pick(response, ['data', 'status']))
   .catch(error => {
     if (error.error) {
-      if (error.status === 401) { // UNAUTHORIZED
-        // TODO: handle the unauthorized
+      switch (error.status) {
+        case 401:
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          window.reload();
+          break;
+        case 403:
+          window.location.href = '/not-authorized';
+          break;
+        default:
+          break;
       }
     }
 
