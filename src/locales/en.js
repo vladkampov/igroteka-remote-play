@@ -23,6 +23,7 @@ export default {
     },
     login: {
       title: 'Log in',
+      forgotPassword: 'I\'ve forgot my password',
       form: {
         identifier: 'Email or Username',
         password: 'Password',

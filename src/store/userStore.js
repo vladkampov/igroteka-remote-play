@@ -1,7 +1,7 @@
 import { observable, action, computed } from 'mobx';
 import { updateApi } from '../api';
 import { localStorage } from '../utils';
-import { login, register, getUser, resetPassword } from '../api/user';
+import { login, register, getUser, resetPassword, recoverPassword } from '../api/user';
 
 export default class UserStore {
   constructor() {
@@ -67,6 +67,8 @@ export default class UserStore {
     });
 
   @action resetPassword = data => this.makeCall(resetPassword, data);
+
+  @action recoverPassword = data => this.makeCall(recoverPassword, data);
 
   @computed get authenticated() {
     return !!(this.user && this.token);

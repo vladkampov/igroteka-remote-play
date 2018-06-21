@@ -4,30 +4,23 @@ import { Button, Alert } from 'react-bootstrap';
 import { reactiveMobxForm, Control } from 'reactive-mobx-form';
 import { ReactiveFormControl } from '../../components';
 
-@reactiveMobxForm('formLogin', {
+@reactiveMobxForm('formPasswordRecovery', {
   schema: {
-    identifier: ['', 'required|max:255|min:3'],
-    password: ['', 'required|max:20|min:6'],
+    email: ['', 'required|max:255|min:3|email'],
   },
 })
 @injectIntl
-class FormLogin extends Component {
+class FormPasswordRecovery extends Component {
   render() {
     const { submit, intl, valid, submitting, submitError } = this.props;
 
     return (
       <form onSubmit={submit}>
         <Control
-          name="identifier"
+          name="email"
           component={ReactiveFormControl}
-          type="text"
-          label={intl.formatMessage({ id: 'login.form.identifier' })}
-        />
-        <Control
-          name="password"
-          component={ReactiveFormControl}
-          type="password"
-          label={intl.formatMessage({ id: 'login.form.password' })}
+          type="email"
+          label={intl.formatMessage({ id: 'passwordRecovery.form.email' })}
         />
         {submitError && (
           <Alert bsStyle="danger">
@@ -42,4 +35,4 @@ class FormLogin extends Component {
   }
 }
 
-export default FormLogin;
+export default FormPasswordRecovery;
