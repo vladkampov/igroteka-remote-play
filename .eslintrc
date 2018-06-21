@@ -54,7 +54,7 @@
       }
     }],
     "semi": ["warn", "always"],
-    "no-underscore-dangle": ["warn", { "allowAfterThis": false }],
+    "no-underscore-dangle": ["warn", { "allowAfterThis": false, "allow": ["_id"] }],
     "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": true }],
     "object-curly-spacing": ["warn", "always"],
     "quote-props": ["warn", "as-needed", { "keywords": false, "unnecessary": true, "numbers": false }],

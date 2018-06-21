@@ -39,5 +39,11 @@ export default {
         submit: 'Register',
       },
     },
+    profile: {
+      email: 'Email',
+      changeEmail: 'Change',
+      password: 'Password',
+      changePassword: 'Change',
+    },
   }),
 };
