@@ -11,7 +11,7 @@ import Router from './routes';
 import UiStore from './store/uiStore';
 import DomainStore from './store/domainStore';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
+import './index.scss';
 
 addLocaleData([...enLang, ...ruLang, ...ukLang]);
 

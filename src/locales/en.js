@@ -54,5 +54,13 @@ export default {
         submit: 'Change Password',
       },
     },
+    pay: {
+      title: 'Buy Subscription',
+      buyButton: 'Buy',
+      consoleGroup: {
+        title: 'You choosed {name} console! That\'s cool!',
+        body: 'Now choose the subscription which is best for you.',
+      },
+    },
   }),
 };

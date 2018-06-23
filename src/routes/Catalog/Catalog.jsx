@@ -4,11 +4,11 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import { Submenu, Card, Loader } from '../../components';
 
 
-@inject('gameStore', 'consoleStore')
+@inject('gameStore', 'consoleGroupStore')
 @observer
 class Home extends Component {
   componentDidMount() {
-    const { gameStore, consoleStore, history, match: { params: { listType } } } = this.props;
+    const { gameStore, consoleGroupStore, history, match: { params: { listType } } } = this.props;
 
     if (!listType) {
       history.push('/catalog/consoles');
@@ -16,15 +16,15 @@ class Home extends Component {
       history.push('/not-found');
     }
 
-    consoleStore.getConsoles();
+    consoleGroupStore.getConsoleGroups();
     gameStore.getGames();
   }
 
   renderGrid = () => {
-    const { gameStore, consoleStore, match: { params: { listType } } } = this.props;
-    const { filteredInstances } = listType === 'games' ? gameStore : consoleStore;
+    const { gameStore, consoleGroupStore, match: { params: { listType } } } = this.props;
+    const { filteredInstances } = listType === 'games' ? gameStore : consoleGroupStore;
 
-    if (gameStore.isLoading || consoleStore.isLoading) {
+    if (gameStore.isLoading || consoleGroupStore.isLoading) {
       return <Loader />;
     }
 

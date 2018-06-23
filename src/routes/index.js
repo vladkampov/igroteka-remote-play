@@ -7,6 +7,7 @@ import Catalog from './Catalog';
 import Login from './Login';
 import SignUp from './SignUp';
 import PasswordRecovery from './PasswordRecovery';
+import Pay from './Pay';
 // errors
 import NotFound from './NotFound';
 import NotAuthorized from './NotAuthorized';
@@ -23,6 +24,7 @@ const Wrapped = {
   Login: WrapperDefaultLayout(Login),
   SignUp: WrapperDefaultLayout(SignUp),
   PasswordRecovery: WrapperDefaultLayout(PasswordRecovery),
+  Pay: WrapperDefaultLayout(Pay),
   // errors
   NotFound: WrapperDefaultLayout(NotFound),
   NotAuthorized: WrapperDefaultLayout(NotAuthorized),
@@ -40,7 +42,8 @@ export default () => (
         <Route path="/logout" exact component={Wrapped.Login} />
         <Route path="/signup" exact component={Wrapped.SignUp} />
         <Route path="/recover-password" exact component={Wrapped.PasswordRecovery} />
-        <Route path="/catalog/:listType?" exact component={Wrapped.Catalog} />
+        <Route path="/catalog/:listType?/:paymentTypeId?" exact component={Wrapped.Catalog} />
+        <Route path="/pay/:consoleGroupId?" exact component={Wrapped.Pay} />
 
         {/* authorized */}
         <PrivateRoute path="/profile" exact component={Wrapped.Profile} />
