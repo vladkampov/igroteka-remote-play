@@ -4,6 +4,7 @@ import { Router, Route, Switch } from 'react-router-dom';
 import { WrapperDefaultLayout, PrivateRoute } from '../components';
 import Home from './Home';
 import Catalog from './Catalog';
+import ConsoleGroupDetails from './ConsoleGroupDetails';
 import Login from './Login';
 import SignUp from './SignUp';
 import PasswordRecovery from './PasswordRecovery';
@@ -21,6 +22,7 @@ const history = createHistory();
 const Wrapped = {
   Home: WrapperDefaultLayout(Home),
   Catalog: WrapperDefaultLayout(Catalog),
+  ConsoleGroupDetails: WrapperDefaultLayout(ConsoleGroupDetails),
   Login: WrapperDefaultLayout(Login),
   SignUp: WrapperDefaultLayout(SignUp),
   PasswordRecovery: WrapperDefaultLayout(PasswordRecovery),
@@ -43,6 +45,11 @@ export default () => (
         <Route path="/signup" exact component={Wrapped.SignUp} />
         <Route path="/recover-password" exact component={Wrapped.PasswordRecovery} />
         <Route path="/catalog/:listType?/:paymentTypeId?" exact component={Wrapped.Catalog} />
+        <Route
+          path="/consoles/:consoleGroupId/:paymentTypeId?"
+          component={Wrapped.ConsoleGroupDetails}
+          exact
+        />
         <Route path="/pay/:consoleGroupId?" exact component={Wrapped.Pay} />
 
         {/* authorized */}

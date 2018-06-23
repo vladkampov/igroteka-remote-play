@@ -4,6 +4,12 @@ import { flattenObject } from '../utils';
 export default {
   lang: 'en',
   messages: flattenObject({
+    breadcrumbs: {
+      home: 'Home',
+      catalog: 'Catalog',
+      consoles: 'Consoles',
+      games: 'Games',
+    },
     header: {
       home: 'Homepage',
       catalog: 'Catalog',
@@ -20,6 +26,12 @@ export default {
       games: 'Games',
       demo: 'Download Demo',
       search: 'Search games',
+    },
+    catalog: {
+      pay: {
+        title: 'You choosed {name} Subscription type',
+        body: 'Now it\'s type to choose the console to play!',
+      },
     },
     login: {
       title: 'Log in',
@@ -60,6 +72,14 @@ export default {
       consoleGroup: {
         title: 'You choosed {name} console! That\'s cool!',
         body: 'Now choose the subscription which is best for you.',
+      },
+    },
+    consoleGroupDetails: {
+      games: 'Games included',
+      buyButton: 'Buy subscription',
+      pay: {
+        title: 'You choosed {name} Subscription type',
+        body: 'You can choose this type of console to play!',
       },
     },
   }),

@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
-import { Grid, Row, Col } from 'react-bootstrap';
-import { Submenu, Card, Loader } from '../../components';
+import { Grid, Row, Col, Alert } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
+import { Submenu, CatalogCard, Loader } from '../../components';
 
 
-@inject('gameStore', 'consoleGroupStore')
+@inject('gameStore', 'consoleGroupStore', 'paymentTypeStore')
 @observer
-class Home extends Component {
+class Catalog extends Component {
   componentDidMount() {
-    const { gameStore, consoleGroupStore, history, match: { params: { listType } } } = this.props;
+    const {
+      gameStore,
+      consoleGroupStore,
+      paymentTypeStore,
+      history,
+      match: { params: { listType, paymentTypeId } },
+    } = this.props;
 
     if (!listType) {
       history.push('/catalog/consoles');
@@ -18,10 +26,14 @@ class Home extends Component {
 
     consoleGroupStore.getConsoleGroups();
     gameStore.getGames();
+
+    if (paymentTypeId) {
+      paymentTypeStore.getPaymentTypeDetails(paymentTypeId);
+    }
   }
 
   renderGrid = () => {
-    const { gameStore, consoleGroupStore, match: { params: { listType } } } = this.props;
+    const { gameStore, consoleGroupStore, match: { params: { listType, paymentTypeId } } } = this.props;
     const { filteredInstances } = listType === 'games' ? gameStore : consoleGroupStore;
 
     if (gameStore.isLoading || consoleGroupStore.isLoading) {
@@ -30,18 +42,36 @@ class Home extends Component {
 
     return filteredInstances.map(instance => (
       <Col md={4} key={instance.id}>
-        <Card type={listType} {...instance} />
+        <CatalogCard type={listType} paymentTypeId={paymentTypeId} {...instance} />
       </Col>
     ));
   }
 
   render() {
+    const {
+      paymentTypeStore: { activeInstance },
+      match: { params: { listType, paymentTypeId } },
+    } = this.props;
+
     return (
       <div>
         TODO: slider
-        <Submenu listType={this.props.match.params.listType} />
+        <Submenu listType={listType} />
         <Grid>
           <Row>
+            {paymentTypeId && (
+              <Alert bsStyle="info">
+                <h4>
+                  <FormattedMessage
+                    id="catalog.pay.title"
+                    values={{
+                      name: <Link to="/pay">{activeInstance.name}</Link>,
+                    }}
+                  />
+                </h4>
+                <p><FormattedMessage id="catalog.pay.body" /></p>
+              </Alert>
+            )}
             {this.renderGrid()}
           </Row>
         </Grid>
@@ -51,4 +81,4 @@ class Home extends Component {
 }
 
 
-export default Home;
+export default Catalog;
