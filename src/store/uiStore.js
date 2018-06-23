@@ -17,7 +17,7 @@ export default class UiStore {
   @observable localeMessages = {};
 
   detectLocale = () => {
-    const supported = ['en', 'uk', 'ru'];
+    const supported = ['en']; // , 'uk', 'ru'
     const { location } = window;
     const detectors = [
       () => (location && [location.pathname.replace('/', '')]),
@@ -25,7 +25,7 @@ export default class UiStore {
         [(location.search.match(/((locale)|(lang))=(\w+)/) || [])[4]] : []),
       () => (localStorage ? [localStorage.getItem('lang'), localStorage.getItem('locale')] : []),
       () => (navigator ? [...(navigator.languages || []), navigator.userLanguage, navigator.language] : []),
-      () => ['en', 'uk', 'ru'],
+      () => ['en'], // , 'uk', 'ru'
     ];
 
     return detectors
