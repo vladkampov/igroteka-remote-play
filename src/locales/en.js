@@ -9,6 +9,8 @@ export default {
       catalog: 'Catalog',
       consoles: 'Consoles',
       games: 'Games',
+      profile: 'Profile',
+      profileEdit: 'Profile Editing',
     },
     header: {
       home: 'Homepage',
@@ -109,6 +111,15 @@ export default {
       form: {
         email: 'Email',
         submit: 'Recover',
+      },
+    },
+    profileEdit: {
+      title: 'Profile editing',
+      form: {
+        username: 'Username',
+        email: 'Email',
+        submit: 'Edit',
+        image: 'Avatar',
       },
     },
   }),

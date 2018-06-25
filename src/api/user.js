@@ -21,7 +21,10 @@ export const getUser = () =>
   api(({ get }) => get(`${CORE_END_POINT_USER_URL}/me`));
 
 export const updateUser = (id, data) =>
-  api(({ put }) => put(`${CORE_END_POINT_USER_URL}/${id}`, { data }));
+  api(({ put }) => put(`${CORE_END_POINT_USER_URL}/${id}`, {
+    data,
+    headers: { 'Content-Type': 'multipart/form-data' },
+  }));
 
 export const deleteUser = id =>
   api(({ del }) => del(`${CORE_END_POINT_USER_URL}/${id}`));

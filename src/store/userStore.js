@@ -1,7 +1,7 @@
 import { observable, action, computed } from 'mobx';
 import { updateApi } from '../api';
 import { localStorage } from '../utils';
-import { login, register, getUser, resetPassword, recoverPassword } from '../api/user';
+import { login, register, getUser, resetPassword, recoverPassword, updateUser } from '../api/user';
 import { markNotificationReaded } from '../api/notifications';
 
 export default class UserStore {
@@ -85,6 +85,13 @@ export default class UserStore {
   @action resetPassword = data => this.makeCall(resetPassword, data);
 
   @action recoverPassword = data => this.makeCall(recoverPassword, data);
+
+  @action updateUser = data => this.makeCall(updateUser, this.userId, data)
+    .then(data => {
+      this.user = data;
+      localStorage.setItem('user', JSON.stringify(data));
+      return data;
+    });
 
   @action markNotificationReaded = id => markNotificationReaded(id)
     .then(({ data }) => {

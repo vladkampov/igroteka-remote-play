@@ -1,26 +1,42 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import { Grid } from 'react-bootstrap';
+import { Grid, Breadcrumb } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router-dom';
+import FormProfileEdit from './FormProfileEdit';
+
 
 @inject('userStore')
 @observer
 class ProfileEdit extends Component {
-  handleSubmit = ({ identifier, password }) => {
-    const { userStore: { login }, history } = this.props;
+  handleSubmit = ({ image, ...data }) => {
+    const { userStore: { updateUser }, history } = this.props;
 
-    return login({ identifier, password })
+    const formData = new FormData();
+
+    Object.keys(data).forEach(key => formData.append(key, data[key]));
+
+    if (image[0]) {
+      formData.append('image', image[0]);
+    }
+
+    return updateUser(formData)
       .then(() => history.push('/profile'))
       .catch(({ data: { message: error } }) => Promise.reject(error));
   }
 
   render() {
+    const { username, email } = this.props.userStore.user;
+
     return (
       <div className="ProfileEdit">
         <Grid>
+          <Breadcrumb>
+            <Breadcrumb.Item href="/"><FormattedMessage id="breadcrumbs.home" /></Breadcrumb.Item>
+            <Breadcrumb.Item href="/profile"><FormattedMessage id="breadcrumbs.profile" /></Breadcrumb.Item>
+            <Breadcrumb.Item active><FormattedMessage id="breadcrumbs.profileEdit" /></Breadcrumb.Item>
+          </Breadcrumb>
           <h2><FormattedMessage id="profileEdit.title" /></h2>
-          {/* <FormLogin onSubmit={this.handleSubmit} /> */}
+          <FormProfileEdit onSubmit={this.handleSubmit} schema={{ username, email }} />
         </Grid>
       </div>
     );
