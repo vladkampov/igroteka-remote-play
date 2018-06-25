@@ -60,7 +60,9 @@ export default {
       password: 'Password',
       changePassword: 'Change',
       paymentsHistory: 'Payments History',
+      noPayments: 'You have no payments yet',
       subscriptionHistory: 'Subscription History',
+      noSubscriptions: 'You have no subscriptions yet',
     },
     changePassword: {
       title: 'Change Password',
