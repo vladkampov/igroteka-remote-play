@@ -59,6 +59,8 @@ export default {
       changeEmail: 'Change',
       password: 'Password',
       changePassword: 'Change',
+      paymentsHistory: 'Payments History',
+      subscriptionHistory: 'Subscription History',
     },
     changePassword: {
       title: 'Change Password',

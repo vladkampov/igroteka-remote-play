@@ -75,6 +75,7 @@ export default class UserStore {
     .then(data => {
       this.user = data;
       localStorage.setItem('user', JSON.stringify(data));
+      return data;
     });
 
   @action resetPassword = data => this.makeCall(resetPassword, data);
