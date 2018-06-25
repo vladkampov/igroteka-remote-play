@@ -15,19 +15,20 @@ import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { Loader } from '../../components';
 import config from '../../config';
+import { getYouTubeId } from '../../utils';
 
-@inject('consoleGroupStore', 'paymentTypeStore')
+@inject('gameStore', 'paymentTypeStore')
 @observer
-class ConsoleGroupDetails extends Component {
+class GameDetails extends Component {
   componentDidMount() {
     const {
-      consoleGroupStore,
+      gameStore,
       paymentTypeStore,
       history,
-      match: { params: { consoleGroupId, paymentTypeId } },
+      match: { params: { gameId, paymentTypeId } },
     } = this.props;
 
-    consoleGroupStore.getConsoleGroupDetails(consoleGroupId)
+    gameStore.getGameDetails(gameId)
       .catch(() => history.push('/not-found'));
 
 
@@ -37,20 +38,25 @@ class ConsoleGroupDetails extends Component {
   }
 
   handleClick = () => {
-    const { match: { params: { consoleGroupId, paymentTypeId } }, history } = this.props;
+    const { gameStore: { activeInstance }, match: { params: { paymentTypeId } }, history } = this.props;
 
-    if (!paymentTypeId) {
-      return history.push(`/pay/${consoleGroupId}`);
+    const avalaibleConsoleGroups = activeInstance.consoleGroups.filter(({ available }) => available === true);
+
+    if (avalaibleConsoleGroups.length) {
+      if (!paymentTypeId) {
+        return history.push(`/pay/${avalaibleConsoleGroups[0]._id}`);
+      }
+
+      // eslint-disable-next-line no-console
+      console.log(`Pay for console ${avalaibleConsoleGroups[0]._id} with paymentTypeId ${paymentTypeId}`);
     }
 
-    // eslint-disable-next-line no-console
-    console.log(`Pay for console ${consoleGroupId} with paymentTypeId ${paymentTypeId}`);
     return null;
   }
 
   render() {
     const {
-      consoleGroupStore: { activeInstance },
+      gameStore: { activeInstance },
       paymentTypeStore: { activeInstance: paymentType },
       match: { params: { paymentTypeId } },
     } = this.props;
@@ -59,7 +65,7 @@ class ConsoleGroupDetails extends Component {
       return <Loader />;
     }
 
-    const { id, name, description, images = [], games, available } = activeInstance;
+    const { id, name, description, images = [], consoleGroups, youtube_url: ytUrl } = activeInstance;
 
     return (
       <div className="Pay">
@@ -67,8 +73,8 @@ class ConsoleGroupDetails extends Component {
           <Breadcrumb>
             <Breadcrumb.Item href="/"><FormattedMessage id="breadcrumbs.home" /></Breadcrumb.Item>
             <Breadcrumb.Item href="/catalog"><FormattedMessage id="breadcrumbs.catalog" /></Breadcrumb.Item>
-            <Breadcrumb.Item href="/catalog/consoles">
-              <FormattedMessage id="breadcrumbs.consoles" />
+            <Breadcrumb.Item href="/catalog/games">
+              <FormattedMessage id="breadcrumbs.games" />
             </Breadcrumb.Item>
             <Breadcrumb.Item active>{name}</Breadcrumb.Item>
           </Breadcrumb>
@@ -83,17 +89,29 @@ class ConsoleGroupDetails extends Component {
                   </Carousel.Item>
                 ))}
               </Carousel>
+              <div className="video">
+                <h4><FormattedMessage id="gameDetails.trailer" />:</h4>
+                <iframe
+                  width="100%"
+                  height="215"
+                  src={`https://www.youtube.com/embed/${getYouTubeId(ytUrl)}`}
+                  frameBorder="0"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                  title="video"
+                />
+              </div>
             </Col>
             <Col md={8}>
               <p>
                 {description}
               </p>
-              <h4><FormattedMessage id="consoleGroupDetails.games" />:</h4>
+              <h4><FormattedMessage id="gameDetails.consoleGroups" />:</h4>
               <ListGroup>
-                {games.map(game => (
-                  <ListGroupItem key={`${id}_game_${game.id}`}>
-                    <Link to={`/games/${game.id}`}>
-                      {game.name}
+                {consoleGroups.map(consoleGroup => (
+                  <ListGroupItem key={`${id}_consoleGroup_${consoleGroup.id}`}>
+                    <Link to={`/consoles/${consoleGroup.id}`}>
+                      {consoleGroup.name}
                     </Link>
                   </ListGroupItem>
                 ))}
@@ -102,17 +120,21 @@ class ConsoleGroupDetails extends Component {
                 <Alert bsStyle="info">
                   <h4>
                     <FormattedMessage
-                      id="consoleGroupDetails.pay.title"
+                      id="gameDetails.pay.title"
                       values={{
                         name: <Link to="/pay">{paymentType.name}</Link>,
                       }}
                     />
                   </h4>
-                  <p><FormattedMessage id="consoleGroupDetails.pay.body" /></p>
+                  <p><FormattedMessage id="gameDetails.pay.body" /></p>
                 </Alert>
               )}
-              <Button bsSize="large" onClick={this.handleClick} disabled={!available}>
-                <FormattedMessage id="consoleGroupDetails.buyButton" />
+              <Button
+                bsSize="large"
+                onClick={this.handleClick}
+                disabled={!consoleGroups.filter(({ available }) => available === true).length}
+              >
+                <FormattedMessage id="gameDetails.buyButton" />
               </Button>
             </Col>
           </Row>
@@ -122,4 +144,4 @@ class ConsoleGroupDetails extends Component {
   }
 }
 
-export default ConsoleGroupDetails;
+export default GameDetails;

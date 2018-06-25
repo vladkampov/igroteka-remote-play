@@ -23,11 +23,6 @@ const Header = ({ userStore, history }) => (
             <FormattedMessage id="header.catalog" />
           </NavItem>
         </LinkContainer>
-        <LinkContainer to="/about">
-          <NavItem eventKey={2}>
-            <FormattedMessage id="header.about" />
-          </NavItem>
-        </LinkContainer>
         <LinkContainer to="/download">
           <NavItem eventKey={3}>
             <FormattedMessage id="header.download" />

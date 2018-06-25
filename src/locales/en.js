@@ -28,6 +28,7 @@ export default {
       search: 'Search games',
     },
     catalog: {
+      buyButton: 'Buy subscription',
       pay: {
         title: 'You choosed {name} Subscription type',
         body: 'Now it\'s type to choose the console to play!',
@@ -80,6 +81,15 @@ export default {
       pay: {
         title: 'You choosed {name} Subscription type',
         body: 'You can choose this type of console to play!',
+      },
+    },
+    gameDetails: {
+      consoleGroups: 'This game are avalaible on',
+      buyButton: 'Buy subscription to play this game',
+      trailer: 'Check out the trailer',
+      pay: {
+        title: 'You choosed {name} Subscription type',
+        body: 'You can choose this game and we\'ll provide you with console!',
       },
     },
   }),

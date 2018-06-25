@@ -1,0 +1,41 @@
+.CatalogCard {
+  border: 1px solid #e7e7e7;
+
+  position: relative;
+  
+  a {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    position: relative;
+
+    &:hover {
+      color: #ffffff;
+
+      .info-bar {
+        padding-top: 20px;
+        // padding-bottom: 20px;
+      }
+    }
+  }
+
+  .info-bar {
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    width: 100%;
+    padding: 10px 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    bottom: 0;
+    transition: 0.2s;
+
+    .genres {
+      margin-left: 10px;
+    
+      .badge {
+        font-size: 8px;
+      }
+    }
+  }
+}

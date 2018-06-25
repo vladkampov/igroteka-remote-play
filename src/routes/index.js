@@ -5,6 +5,7 @@ import { WrapperDefaultLayout, PrivateRoute } from '../components';
 import Home from './Home';
 import Catalog from './Catalog';
 import ConsoleGroupDetails from './ConsoleGroupDetails';
+import GameDetails from './GameDetails';
 import Login from './Login';
 import SignUp from './SignUp';
 import PasswordRecovery from './PasswordRecovery';
@@ -23,6 +24,7 @@ const Wrapped = {
   Home: WrapperDefaultLayout(Home),
   Catalog: WrapperDefaultLayout(Catalog),
   ConsoleGroupDetails: WrapperDefaultLayout(ConsoleGroupDetails),
+  GameDetails: WrapperDefaultLayout(GameDetails),
   Login: WrapperDefaultLayout(Login),
   SignUp: WrapperDefaultLayout(SignUp),
   PasswordRecovery: WrapperDefaultLayout(PasswordRecovery),
@@ -48,6 +50,11 @@ export default () => (
         <Route
           path="/consoles/:consoleGroupId/:paymentTypeId?"
           component={Wrapped.ConsoleGroupDetails}
+          exact
+        />
+        <Route
+          path="/games/:gameId/:paymentTypeId?"
+          component={Wrapped.GameDetails}
           exact
         />
         <Route path="/pay/:consoleGroupId?" exact component={Wrapped.Pay} />

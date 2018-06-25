@@ -11,9 +11,7 @@ export class GameStore extends DomainInstanceStore {
     this.getInstances();
   }
 
-  getGameDetails(id) {
-    this.getInstance(id);
-  }
+  getGameDetails = id => this.getInstance(id);
 }
 
 export class Game extends DomainInstance {
