@@ -17,8 +17,8 @@ export const recoverPassword = data =>
 export const resetPassword = data =>
   api(({ post }) => post(`${CORE_END_POINT_AUTH_URL}/reset-password`, { data }));
 
-export const getUser = id =>
-  api(({ get }) => get(`${CORE_END_POINT_USER_URL}/${id}`));
+export const getUser = () =>
+  api(({ get }) => get(`${CORE_END_POINT_USER_URL}/me`));
 
 export const updateUser = (id, data) =>
   api(({ put }) => put(`${CORE_END_POINT_USER_URL}/${id}`, { data }));

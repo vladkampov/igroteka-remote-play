@@ -2,6 +2,7 @@ import { observable, action, computed } from 'mobx';
 import { updateApi } from '../api';
 import { localStorage } from '../utils';
 import { login, register, getUser, resetPassword, recoverPassword } from '../api/user';
+import { markNotificationReaded } from '../api/notifications';
 
 export default class UserStore {
   constructor() {
@@ -11,12 +12,17 @@ export default class UserStore {
     if (token && user) {
       this.token = token;
       this.user = user;
+      this.notifications = user.notifications.reduce((acc, item) => {
+        acc[item._id] = item;
+        return acc;
+      }, {});
       updateApi({ headers: { Authorization: `Bearer ${token}` } });
     }
   }
 
   @observable token = null;
   @observable user = null;
+  @observable notifications = {};
   @observable isLoading = false;
   @observable loadingError = false;
 
@@ -37,6 +43,10 @@ export default class UserStore {
 
   saveUserData = data => {
     this.user = data.user;
+    this.notifications = data.user.notifications.reduce((acc, item) => {
+      acc[item._id] = item;
+      return acc;
+    }, {});
     this.token = data.jwt;
     localStorage.setItem('token', data.jwt);
     localStorage.setItem('user', JSON.stringify(data.user));
@@ -51,6 +61,7 @@ export default class UserStore {
   @action logout = () => new Promise(resolve => {
     this.token = null;
     this.user = null;
+    this.notifications = {};
     updateApi({ headers: {} });
     localStorage.removeItem('token');
     localStorage.removeItem('user');
@@ -60,7 +71,7 @@ export default class UserStore {
   @action register = data => this.makeCall(register, data)
     .then(this.saveUserData);
 
-  @action getUser = () => this.makeCall(getUser, this.userId)
+  @action getUser = () => this.makeCall(getUser)
     .then(data => {
       this.user = data;
       localStorage.setItem('user', JSON.stringify(data));
@@ -70,11 +81,28 @@ export default class UserStore {
 
   @action recoverPassword = data => this.makeCall(recoverPassword, data);
 
+  @action markNotificationReaded = id => markNotificationReaded(id)
+    .then(({ data }) => {
+      delete this.notifications[data.id];
+      this.notifications[data.id] = data;
+      return data;
+    });
+
   @computed get authenticated() {
     return !!(this.user && this.token);
   }
 
   @computed get userId() {
     return this.user ? this.user._id : null;
+  }
+
+  @computed get unreadedNotifications() {
+    return Object.keys(this.notifications).reduce((acc, key) => {
+      if (!this.notifications[key].readed) {
+        return acc.concat(this.notifications[key]);
+      }
+
+      return acc;
+    }, []);
   }
 }

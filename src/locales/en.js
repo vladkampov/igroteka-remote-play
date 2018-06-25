@@ -20,6 +20,7 @@ export default {
       profile: 'My Profile',
       login: 'Log in',
       signup: 'Sign up',
+      emptyNotifications: 'You have no unreaded notifications.',
     },
     submenu: {
       consoles: 'Consoles',

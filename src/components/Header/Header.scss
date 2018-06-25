@@ -1,0 +1,46 @@
+.Header {
+  .notifications {
+    &.has-notifications {
+      .dropdown-toggle {
+        color: #ffffff;
+
+        .glyphicon:after {
+          content: '';
+          display: block;
+          width: 7px;
+          height: 7px;
+          background-color: red;
+          border-radius: 50%;
+          position: absolute;
+          top: -5px;
+          right: -5px;
+        }
+      }
+    }
+
+    .caret {
+      display: none;
+    }
+
+    li {
+      display: block;
+      padding: 3px 20px;
+      clear: both;
+      font-weight: 400;
+      line-height: 1.42857143;
+      color: #333;
+      white-space: nowrap;
+      
+      a {
+        display: inline;
+        padding: 0;
+        margin-left: 10px;
+        color: #e7e7e7;
+
+        &:hover {
+          background: none;
+        }
+      }
+    }
+  }
+}
