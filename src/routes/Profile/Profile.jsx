@@ -45,13 +45,13 @@ class Profile extends Component {
             <Col md={8}>
               <h2>{username}</h2>
               <p>
-                <b><FormattedMessage id="profile.email" />: </b>
-                {email}&nbsp;
-                <Link to="/profile/change-email" ><FormattedMessage id="profile.changeEmail" /></Link>
+                <Link to="/profile/edit" className="btn btn-sm btn-default">
+                  <FormattedMessage id="profile.edit" />
+                </Link>
               </p>
               <p>
-                <b><FormattedMessage id="profile.password" />: </b>
-                <Link to="/profile/change-password" ><FormattedMessage id="profile.changePassword" /></Link>
+                <b><FormattedMessage id="profile.email" />: </b>
+                {email}
               </p>
               <Row>
                 <Col md={6}>

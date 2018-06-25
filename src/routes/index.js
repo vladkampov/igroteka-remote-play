@@ -10,12 +10,13 @@ import Login from './Login';
 import SignUp from './SignUp';
 import PasswordRecovery from './PasswordRecovery';
 import Pay from './Pay';
+import SetNewPassword from './SetNewPassword';
 // errors
 import NotFound from './NotFound';
 import NotAuthorized from './NotAuthorized';
 // authorized
 import Profile from './Profile';
-import ChangePassword from './ChangePassword';
+import ProfileEdit from './ProfileEdit';
 
 
 const history = createHistory();
@@ -29,12 +30,13 @@ const Wrapped = {
   SignUp: WrapperDefaultLayout(SignUp),
   PasswordRecovery: WrapperDefaultLayout(PasswordRecovery),
   Pay: WrapperDefaultLayout(Pay),
+  SetNewPassword: WrapperDefaultLayout(SetNewPassword),
   // errors
   NotFound: WrapperDefaultLayout(NotFound),
   NotAuthorized: WrapperDefaultLayout(NotAuthorized),
   // authorized
   Profile: WrapperDefaultLayout(Profile),
-  ChangePassword: WrapperDefaultLayout(ChangePassword),
+  ProfileEdit: WrapperDefaultLayout(ProfileEdit),
 };
 
 export default () => (
@@ -59,12 +61,13 @@ export default () => (
         />
         <Route path="/pay/:consoleGroupId?" exact component={Wrapped.Pay} />
         <Route
-          path="/change-password/:privateCode"
+          path="/new-password/:privateCode"
           exact
-          component={Wrapped.ChangePassword}
+          component={Wrapped.SetNewPassword}
         />
 
         {/* authorized */}
+        <PrivateRoute path="/profile/edit" exact component={Wrapped.ProfileEdit} />
         <PrivateRoute path="/profile/:paymentId?" exact component={Wrapped.Profile} />
 
         {/* errors */}

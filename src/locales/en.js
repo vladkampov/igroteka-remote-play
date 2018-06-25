@@ -56,6 +56,7 @@ export default {
       },
     },
     profile: {
+      edit: 'Edit profile',
       email: 'Email',
       changeEmail: 'Change',
       password: 'Password',
@@ -68,8 +69,9 @@ export default {
       noSubscriptions: 'You have no subscriptions yet',
       seePayment: 'See Payment',
     },
-    changePassword: {
+    setNewPassword: {
       title: 'Change Password',
+      success: 'You`re password was successfully changed. Now you can Log In',
       form: {
         password: 'Password',
         passwordConfirmation: 'Password confirmation',

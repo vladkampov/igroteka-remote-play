@@ -4,14 +4,14 @@ import { Button, Alert } from 'react-bootstrap';
 import { reactiveMobxForm, Control } from 'reactive-mobx-form';
 import { ReactiveFormControl } from '../../components';
 
-@reactiveMobxForm('formChangePassword', {
+@reactiveMobxForm('formSetNewPassword', {
   schema: {
     password: ['', 'required|max:20|min:6|same:passwordConfirmation'],
     passwordConfirmation: ['', 'required|max:20|min:6|same:password'],
   },
 })
 @injectIntl
-class FormChangePassword extends Component {
+class FormSetNewPassword extends Component {
   render() {
     const { submit, intl, valid, submitting, submitError } = this.props;
 
@@ -28,13 +28,13 @@ class FormChangePassword extends Component {
           name="password"
           component={ReactiveFormControl}
           type="password"
-          label={intl.formatMessage({ id: 'changePassword.form.password' })}
+          label={intl.formatMessage({ id: 'setNewPassword.form.password' })}
         />
         <Control
           name="passwordConfirmation"
           component={ReactiveFormControl}
           type="password"
-          label={intl.formatMessage({ id: 'changePassword.form.passwordConfirmation' })}
+          label={intl.formatMessage({ id: 'setNewPassword.form.passwordConfirmation' })}
         />
         {submitError && (
           <Alert bsStyle="danger">
@@ -42,11 +42,11 @@ class FormChangePassword extends Component {
           </Alert>
         )}
         <Button bsSize="large" type="submit" disabled={!valid || submitting}>
-          <FormattedMessage id="changePassword.form.submit" />
+          <FormattedMessage id="setNewPassword.form.submit" />
         </Button>
       </form>
     );
   }
 }
 
-export default FormChangePassword;
+export default FormSetNewPassword;
