@@ -38,6 +38,7 @@ export default {
     login: {
       title: 'Log in',
       forgotPassword: 'I\'ve forgot my password',
+      signup: 'Sign up',
       form: {
         identifier: 'Email or Username',
         password: 'Password',
@@ -62,7 +63,10 @@ export default {
       paymentsHistory: 'Payments History',
       noPayments: 'You have no payments yet',
       subscriptionHistory: 'Subscription History',
+      subscriptionDays: '{days} day(s)',
+      subscriptionDaysLeft: '{days} day(s) left',
       noSubscriptions: 'You have no subscriptions yet',
+      seePayment: 'See Payment',
     },
     changePassword: {
       title: 'Change Password',
@@ -95,6 +99,14 @@ export default {
       pay: {
         title: 'You choosed {name} Subscription type',
         body: 'You can choose this game and we\'ll provide you with console!',
+      },
+    },
+    passwordRecovery: {
+      title: 'Password Recovery',
+      success: 'Your recovery request was accepted. Check out your email to continue.',
+      form: {
+        email: 'Email',
+        submit: 'Recover',
       },
     },
   }),

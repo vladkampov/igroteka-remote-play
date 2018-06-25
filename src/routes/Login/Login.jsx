@@ -35,6 +35,10 @@ class Login extends Component {
             <Link to="/recover-password">
               <FormattedMessage id="login.forgotPassword" />
             </Link>
+            <span> | </span>
+            <Link to="/signup">
+              <FormattedMessage id="login.signup" />
+            </Link>
           </p>
         </Grid>
       </div>

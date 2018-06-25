@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react';
 import { Grid, Row, Col, Alert } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { Submenu, CatalogCard, Loader } from '../../components';
+import { Submenu, CatalogCard, Loader, Slider } from '../../components';
 
 
 @inject('gameStore', 'consoleGroupStore', 'paymentTypeStore')
@@ -55,7 +55,7 @@ class Catalog extends Component {
 
     return (
       <div>
-        TODO: slider
+        <Slider />
         <Submenu listType={listType} />
         <Grid>
           <Row>

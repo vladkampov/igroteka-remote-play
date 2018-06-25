@@ -58,14 +58,14 @@ export default () => (
           exact
         />
         <Route path="/pay/:consoleGroupId?" exact component={Wrapped.Pay} />
-
-        {/* authorized */}
-        <PrivateRoute path="/profile" exact component={Wrapped.Profile} />
-        <PrivateRoute
-          path="/profile/change-password/:privateCode"
+        <Route
+          path="/change-password/:privateCode"
           exact
           component={Wrapped.ChangePassword}
         />
+
+        {/* authorized */}
+        <PrivateRoute path="/profile/:paymentId?" exact component={Wrapped.Profile} />
 
         {/* errors */}
         <Route path="/not-authorized" component={Wrapped.NotAuthorized} />

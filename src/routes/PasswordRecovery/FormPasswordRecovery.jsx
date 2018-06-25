@@ -28,7 +28,7 @@ class FormPasswordRecovery extends Component {
           </Alert>
         )}
         <Button bsSize="large" type="submit" disabled={!valid || submitting}>
-          <FormattedMessage id="login.form.submit" />
+          <FormattedMessage id="passwordRecovery.form.submit" />
         </Button>
       </form>
     );

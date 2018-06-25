@@ -1,0 +1,15 @@
+.Slider {
+  margin-top: -20px;
+  max-height: 500px;
+  cursor: pointer;
+
+  .item {
+    max-height: 500px;
+    overflow: hidden;
+
+    img {
+      height: auto;
+      width: 100%;
+    }
+  }
+}

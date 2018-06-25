@@ -12,10 +12,10 @@ export default class UserStore {
     if (token && user) {
       this.token = token;
       this.user = user;
-      this.notifications = user.notifications.reduce((acc, item) => {
+      this.notifications = user.notifications ? user.notifications.reduce((acc, item) => {
         acc[item._id] = item;
         return acc;
-      }, {});
+      }, {}) : {};
       updateApi({ headers: { Authorization: `Bearer ${token}` } });
     }
   }
@@ -43,11 +43,15 @@ export default class UserStore {
 
   saveUserData = data => {
     this.user = data.user;
-    this.notifications = data.user.notifications.reduce((acc, item) => {
-      acc[item._id] = item;
-      return acc;
-    }, {});
     this.token = data.jwt;
+
+    if (data.user.notifications) {
+      this.notifications = data.user.notifications.reduce((acc, item) => {
+        acc[item._id] = item;
+        return acc;
+      }, {});
+    }
+
     localStorage.setItem('token', data.jwt);
     localStorage.setItem('user', JSON.stringify(data.user));
     updateApi({ headers: { Authorization: `Bearer ${data.jwt}` } });
