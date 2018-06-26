@@ -7,7 +7,7 @@ import { Loader, PaymentCard } from '../../components';
 
 @inject('paymentTypeStore', 'consoleGroupStore')
 @observer
-class Profile extends Component {
+class Pay extends Component {
   componentDidMount() {
     const { paymentTypeStore, consoleGroupStore, match: { params: { consoleGroupId } } } = this.props;
 
@@ -58,4 +58,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default Pay;

@@ -122,5 +122,31 @@ export default {
         image: 'Avatar',
       },
     },
+    home: {
+      title: 'This is a new way to play.',
+      subtitle: 'To play Consoles games on your PC',
+      callToAction: 'Try it now',
+      reasons: {
+        title: 'Here\'s why you\'ll like it',
+        0: 'Now you can play games from Console right on your PC',
+        1: 'You don\'t need to buy games. You are getting access to console with preinstalled games',
+        2: 'Connect your Game controller and feel it',
+        3: 'Play from any Windows device just with your account',
+      },
+      paymentTypes: {
+        title: 'Start playing right now!',
+        subtitle: 'Get a subscription and be cool',
+      },
+      games: {
+        title: 'We have a big games libriary',
+        subtitle: 'Check if game you want exist in our library',
+        search: 'Start typing...',
+        noGame: 'There\'s no game with this name. Probably it will appear soon',
+      },
+      footer: {
+        title: 'More than 1000 players\nenjoy the possibilities\nof our service.\n\nJoin us!',
+        callToAction: 'Subscribe and Play',
+      },
+    },
   }),
 };
