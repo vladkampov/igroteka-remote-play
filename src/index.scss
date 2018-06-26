@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 
+
+html {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#013d71+0,002b50+100 */
+  background: #013d71; /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover, #013d71 0%, #002b50 100%); /* FF3.6-15 */
+  background: -webkit-radial-gradient(center, ellipse cover, #013d71 0%,#002b50 100%); /* Chrome10-25,Safari5.1-6 */
+  background: radial-gradient(ellipse at center, #013d71 0%,#002b50 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#013d71', endColorstr='#002b50',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */  
+}
+
+
 body {
   margin: 0;
   padding: 0;
@@ -9,8 +20,8 @@ body {
   background-size: auto 35%;
   background-repeat-y: no-repeat;
   background-position-y: 100%;
-  background-color: #393c56;
-  margin-bottom: 500px;
+  background-color: transparent;
+  padding-bottom: 500px;
   color: #ffffff;
 
   // .container {

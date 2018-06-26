@@ -25,7 +25,7 @@ class PaymentCard extends Component {
 
     return (
       <div className={`PaymentCard ${featured && 'featured'}`}>
-        <h3 className="name">{name}</h3>
+        <h4 className="name">{name}</h4>
         <p className="description">{description}</p>
         <div className="footer">
           <div className="price">{price}</div>
