@@ -28,7 +28,7 @@ class Header extends Component {
           <Navbar.Header>
             <Navbar.Brand>
               <Link to="/" className="navbar-brand">
-                Logo
+                iteka<span className="first">Remote</span><span className="second">Play</span>
               </Link>
             </Navbar.Brand>
           </Navbar.Header>

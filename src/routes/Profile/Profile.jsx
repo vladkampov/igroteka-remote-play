@@ -45,7 +45,7 @@ class Profile extends Component {
             <Col md={8}>
               <h2>{username}</h2>
               <p>
-                <Link to="/profile/edit" className="btn btn-sm btn-default">
+                <Link to="/profile/edit" className="btn btn-default">
                   <FormattedMessage id="profile.edit" />
                 </Link>
               </p>

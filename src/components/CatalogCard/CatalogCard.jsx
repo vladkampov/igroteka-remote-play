@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import { Image, Button, Badge, Tooltip, OverlayTrigger } from 'react-bootstrap';
-import { FormattedMessage } from 'react-intl';
+import { Image, Badge, Tooltip, OverlayTrigger } from 'react-bootstrap';
+// import { FormattedMessage } from 'react-intl';
 import config from '../../config';
 import './CatalogCard.scss';
 
@@ -43,13 +43,13 @@ class CatalogCard extends Component {
                 ))}
               </div>
             )}
-            {type === 'consoles' && (
+            {/* {type === 'consoles' && (
               <div className="buy">
                 <Button onClick={this.handleClick} disabled={!available} bsSize="xsmall">
                   <FormattedMessage id="catalog.buyButton" />
                 </Button>
               </div>
-            )}
+            )} */}
           </div>
         </Link>
       </div>

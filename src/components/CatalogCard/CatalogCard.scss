@@ -29,11 +29,14 @@
     bottom: 0;
     transition: 0.2s;
 
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+
     .genres {
       margin-left: 10px;
     
       .badge {
-        font-size: 8px;
+        font-size: 6px;
       }
     }
   }

@@ -3,6 +3,8 @@ import { inject } from 'mobx-react';
 import { Navbar, Nav, NavItem, FormGroup, FormControl } from 'react-bootstrap';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { LinkContainer } from 'react-router-bootstrap';
+import './Submenu.scss';
+
 
 @injectIntl
 @inject('gameStore', 'consoleStore')

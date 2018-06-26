@@ -10,12 +10,17 @@ import {
   ListGroupItem,
   Alert,
   Button,
+  Tooltip,
+  Badge,
+  OverlayTrigger,
 } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { Loader } from '../../components';
 import config from '../../config';
 import { getYouTubeId } from '../../utils';
+import './GameDetails.scss';
+
 
 @inject('gameStore', 'paymentTypeStore')
 @observer
@@ -54,6 +59,10 @@ class GameDetails extends Component {
     return null;
   }
 
+  renderGenreTooltip= text => (
+    <Tooltip id="genre-tooltip">{text}</Tooltip>
+  );
+
   render() {
     const {
       gameStore: { activeInstance },
@@ -65,10 +74,10 @@ class GameDetails extends Component {
       return <Loader />;
     }
 
-    const { id, name, description, images = [], consoleGroups, youtube_url: ytUrl } = activeInstance;
+    const { id, name, description, images = [], consoleGroups, youtube_url: ytUrl, genres } = activeInstance;
 
     return (
-      <div className="Pay">
+      <div className="GameDetails">
         <Grid>
           <Breadcrumb>
             <Breadcrumb.Item href="/"><FormattedMessage id="breadcrumbs.home" /></Breadcrumb.Item>
@@ -78,7 +87,16 @@ class GameDetails extends Component {
             </Breadcrumb.Item>
             <Breadcrumb.Item active>{name}</Breadcrumb.Item>
           </Breadcrumb>
-          <h2>{name}</h2>
+          <h2>{name}
+            <span className="genres">
+              &nbsp;
+              {genres.map(({ name, description, id }) => (
+                <OverlayTrigger key={id} placement="bottom" overlay={this.renderGenreTooltip(description)}>
+                  <Badge>{name}</Badge>
+                </OverlayTrigger>
+              ))}
+            </span>
+          </h2>
 
           <Row>
             <Col md={4}>
@@ -89,6 +107,7 @@ class GameDetails extends Component {
                   </Carousel.Item>
                 ))}
               </Carousel>
+              <p><br /></p>
               <div className="video">
                 <h4><FormattedMessage id="gameDetails.trailer" />:</h4>
                 <iframe
