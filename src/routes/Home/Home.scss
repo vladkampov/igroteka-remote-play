@@ -103,11 +103,12 @@
   .games {
     background: #0b5394;
     padding: 50px 15px;
+    box-shadow: 0 5px 20px 0 #00000059;
+
     .games-list {
-      width: 400px;
+      width: 600px;
       margin: auto;
       padding: 15px 20px;
-      box-shadow: 0 5px 20px 0 #00000059;
 
       .form-control {
         background-color: #ffffff;
@@ -124,12 +125,14 @@
       .list-group {
         height: 200px;
         overflow: scroll;
+        border: 1px solid #00000017;
+        border-radius: 4px;
       }
     }
   }
 
   .footer-section {
-    padding: 50px 15px;
+    padding: 20px 15px 25px;
     text-align: center;
   }
 }

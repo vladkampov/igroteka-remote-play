@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { Grid, Button, Row, Col, ListGroup, ListGroupItem, FormGroup, FormControl } from 'react-bootstrap';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Loader } from '../../components';
+import { Loader, GamePad } from '../../components';
 import Pay from '../Pay';
 import './Home.scss';
 
@@ -105,6 +105,7 @@ class Home extends Component {
             </div>
           </div>
           <div className="footer-section">
+            <GamePad />
             <h3 className="section-title"><FormattedMessage id="home.footer.title" /></h3>
             <p>
               <Button bsSize="large" className="callToAction">
