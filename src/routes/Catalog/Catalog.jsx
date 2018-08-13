@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { observer, inject } from 'mobx-react';
 import { Grid, Row, Col, Alert } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { Submenu, CatalogCard, Loader, Slider } from '../../components';
+import { Submenu, CatalogCard, Loader, Slider, AccountGenerator } from '../../components';
 
 
-@inject('gameStore', 'consoleGroupStore', 'paymentTypeStore')
+@inject('gameStore', 'consoleGroupStore', 'paymentTypeStore', 'userStore')
 @observer
 class Catalog extends Component {
   componentDidMount() {
@@ -50,6 +50,7 @@ class Catalog extends Component {
   render() {
     const {
       paymentTypeStore: { activeInstance },
+      userStore: { userId },
       match: { params: { listType, paymentTypeId } },
     } = this.props;
 
@@ -60,17 +61,20 @@ class Catalog extends Component {
         <Grid>
           <Row>
             {paymentTypeId && (
-              <Alert bsStyle="info">
-                <h4>
-                  <FormattedMessage
-                    id="catalog.pay.title"
-                    values={{
-                      name: <Link to="/pay">{activeInstance.name}</Link>,
-                    }}
-                  />
-                </h4>
-                <p><FormattedMessage id="catalog.pay.body" /></p>
-              </Alert>
+              <Fragment>
+                <Alert bsStyle="info">
+                  <h4>
+                    <FormattedMessage
+                      id="catalog.pay.title"
+                      values={{
+                        name: <Link to="/pay">{activeInstance.name}</Link>,
+                      }}
+                    />
+                  </h4>
+                  <p><FormattedMessage id="catalog.pay.body" /></p>
+                </Alert>
+                {userId ? null : <AccountGenerator />}
+              </Fragment>
             )}
             {this.renderGrid()}
           </Row>

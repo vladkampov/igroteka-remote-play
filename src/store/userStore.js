@@ -1,7 +1,15 @@
 import { observable, action, computed } from 'mobx';
 import { updateApi } from '../api';
 import { localStorage } from '../utils';
-import { login, register, getUser, resetPassword, recoverPassword, updateUser } from '../api/user';
+import {
+  login,
+  register,
+  getUser,
+  resetPassword,
+  recoverPassword,
+  updateUser,
+  createGeneratedUser,
+} from '../api/user';
 import { markNotificationReaded } from '../api/notifications';
 
 export default class UserStore {
@@ -74,6 +82,14 @@ export default class UserStore {
 
   @action register = data => this.makeCall(register, data)
     .then(this.saveUserData);
+
+  @action createGeneratedUser = data => this.makeCall(createGeneratedUser, data)
+    .then(token => {
+      this.token = token;
+      localStorage.setItem('token', token);
+      updateApi({ headers: { Authorization: `Bearer ${token}` } });
+    })
+    .then(this.getUser);
 
   @action getUser = () => this.makeCall(getUser)
     .then(data => {

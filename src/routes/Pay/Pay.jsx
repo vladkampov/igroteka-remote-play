@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { observer, inject } from 'mobx-react';
 import { Grid, Row, Col, Alert } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { Loader, PaymentCard } from '../../components';
+import { Loader, PaymentCard, AccountGenerator } from '../../components';
 
-@inject('paymentTypeStore', 'consoleGroupStore')
+@inject('paymentTypeStore', 'consoleGroupStore', 'userStore')
 @observer
 class Pay extends Component {
   componentDidMount() {
@@ -21,6 +21,7 @@ class Pay extends Component {
     const {
       paymentTypeStore: { instances, isLoading },
       consoleGroupStore: { activeInstance },
+      userStore: { userId },
       match: { params: { consoleGroupId } },
     } = this.props;
 
@@ -33,17 +34,20 @@ class Pay extends Component {
         <Grid>
           <h2><FormattedMessage id="pay.title" /></h2>
           {consoleGroupId && (
-            <Alert bsStyle="info">
-              <h4>
-                <FormattedMessage
-                  id="pay.consoleGroup.title"
-                  values={{
-                    name: <Link to={`/catalog/consoles/${activeInstance.id}`}>{activeInstance.name}</Link>,
-                  }}
-                />
-              </h4>
-              <p><FormattedMessage id="pay.consoleGroup.body" /></p>
-            </Alert>
+            <Fragment>
+              <Alert bsStyle="info">
+                <h4>
+                  <FormattedMessage
+                    id="pay.consoleGroup.title"
+                    values={{
+                      name: <Link to={`/catalog/consoles/${activeInstance.id}`}>{activeInstance.name}</Link>,
+                    }}
+                  />
+                </h4>
+                <p><FormattedMessage id="pay.consoleGroup.body" /></p>
+              </Alert>
+              {userId ? null : <AccountGenerator />}
+            </Fragment>
           )}
           <Row>
             {instances.map(paymentType => (

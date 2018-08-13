@@ -11,6 +11,9 @@ export const login = data =>
 export const register = data =>
   api(({ post }) => post(`${CORE_END_POINT_AUTH_URL}/local/register`, { data }));
 
+export const createGeneratedUser = data =>
+  api(({ post }) => post(`${config('CORE_API_PLUGIN')}/createuser`, { data }));
+
 export const recoverPassword = data =>
   api(({ post }) => post(`${CORE_END_POINT_AUTH_URL}/forgot-password`, { data }));
 

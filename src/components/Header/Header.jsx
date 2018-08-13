@@ -7,9 +7,9 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import './Header.scss';
 
+@withRouter
 @inject('userStore')
 @observer
-@withRouter
 class Header extends Component {
   handleNotificationClick = (e, id) => {
     e.preventDefault();

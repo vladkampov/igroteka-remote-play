@@ -148,5 +148,14 @@ export default {
         callToAction: 'Subscribe and Play',
       },
     },
+    accountGenerator: {
+      title: 'Uh oh! Seems like you don\'t have account yet',
+      body: 'Let\'s create one with one field only. You\'ll recieve credentials on your email',
+      login: 'Have account? Log in.',
+      form: {
+        email: 'Email',
+        submit: 'Sign up',
+      },
+    },
   }),
 };

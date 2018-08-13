@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { observer, inject } from 'mobx-react';
 import {
   Grid,
@@ -13,10 +13,10 @@ import {
 } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { Loader } from '../../components';
+import { Loader, AccountGenerator } from '../../components';
 import config from '../../config';
 
-@inject('consoleGroupStore', 'paymentTypeStore')
+@inject('consoleGroupStore', 'paymentTypeStore', 'userStore')
 @observer
 class ConsoleGroupDetails extends Component {
   componentDidMount() {
@@ -51,6 +51,7 @@ class ConsoleGroupDetails extends Component {
   render() {
     const {
       consoleGroupStore: { activeInstance },
+      userStore: { userId },
       paymentTypeStore: { activeInstance: paymentType },
       match: { params: { paymentTypeId } },
     } = this.props;
@@ -99,17 +100,20 @@ class ConsoleGroupDetails extends Component {
                 ))}
               </ListGroup>
               {paymentTypeId && (
-                <Alert bsStyle="info">
-                  <h4>
-                    <FormattedMessage
-                      id="consoleGroupDetails.pay.title"
-                      values={{
-                        name: <Link to="/pay">{paymentType.name}</Link>,
-                      }}
-                    />
-                  </h4>
-                  <p><FormattedMessage id="consoleGroupDetails.pay.body" /></p>
-                </Alert>
+                <Fragment>
+                  <Alert bsStyle="info">
+                    <h4>
+                      <FormattedMessage
+                        id="consoleGroupDetails.pay.title"
+                        values={{
+                          name: <Link to="/pay">{paymentType.name}</Link>,
+                        }}
+                      />
+                    </h4>
+                    <p><FormattedMessage id="consoleGroupDetails.pay.body" /></p>
+                  </Alert>
+                  {userId ? null : <AccountGenerator />}
+                </Fragment>
               )}
               <Button bsSize="large" onClick={this.handleClick} disabled={!available}>
                 <FormattedMessage id="consoleGroupDetails.buyButton" />
