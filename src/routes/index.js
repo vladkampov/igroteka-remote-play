@@ -17,6 +17,7 @@ import NotAuthorized from './NotAuthorized';
 // authorized
 import Profile from './Profile';
 import ProfileEdit from './ProfileEdit';
+import PaymentStatus from './PaymentStatus';
 
 
 const history = createHistory();
@@ -37,6 +38,7 @@ const Wrapped = {
   // authorized
   Profile: WrapperDefaultLayout(Profile),
   ProfileEdit: WrapperDefaultLayout(ProfileEdit),
+  PaymentStatus: WrapperDefaultLayout(PaymentStatus),
 };
 
 export default () => (
@@ -69,6 +71,12 @@ export default () => (
         {/* authorized */}
         <PrivateRoute path="/profile/edit" exact component={Wrapped.ProfileEdit} />
         <PrivateRoute path="/profile/:paymentId?" exact component={Wrapped.Profile} />
+
+        <PrivateRoute
+          path="/pay/status/:consoleGroupId/:paymentTypeId"
+          exact
+          component={Wrapped.PaymentStatus}
+        />
 
         {/* errors */}
         <Route path="/not-authorized" component={Wrapped.NotAuthorized} />

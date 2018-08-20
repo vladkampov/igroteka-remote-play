@@ -9,15 +9,11 @@ class PaymentCard extends Component {
   handleClick = () => {
     const { id, consoleGroupId, history } = this.props;
 
-
     if (!consoleGroupId) {
       return history.push(`/catalog/consoles/${id}`);
     }
 
-    // eslint-disable-next-line no-console
-    console.log(`Buy type ${id} for consoleGroup ${consoleGroupId}`);
-    // TODO: we have to create user before sending it
-    return null;
+    return history.push(`/pay/status/${consoleGroupId}/${id}`);
   }
 
   render() {

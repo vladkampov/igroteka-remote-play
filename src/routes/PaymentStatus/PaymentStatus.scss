@@ -1,0 +1,21 @@
+.PaymentStatus {
+  .title {
+    &.CREATED,
+    &.SUCCESS {
+      color: #19b319;
+    }
+
+    &.PENDING,
+    &.PROCESSING {
+      color: #f5e70d;
+    }
+    
+    &.FAILED {
+      color: #ff6362;
+    }
+  }
+
+  .btn {
+    text-transform: uppercase;
+  }
+}

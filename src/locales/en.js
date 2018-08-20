@@ -157,5 +157,18 @@ export default {
         submit: 'Sign up',
       },
     },
+    paymentStatus: {
+      title: 'Your payment is {status}',
+      body: {
+        FAILED: 'Please try again',
+        PENDING: 'Please contact our customer servuce',
+        SUCCESS: 'You are all set!',
+      },
+      button: {
+        home: 'To Homepage',
+        profile: 'to profile',
+        download: 'Download client',
+      },
+    },
   }),
 };

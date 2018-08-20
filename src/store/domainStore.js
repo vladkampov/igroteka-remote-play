@@ -4,6 +4,7 @@ import { ConsoleGroupStore } from './consoleGroupStore';
 import { PaymentTypeStore } from './paymentTypeStore';
 import { SliderItemStore } from './sliderItemStore';
 import UserStore from './userStore';
+import PayStore from './payStore';
 
 export default class DomainStore {
   constructor() {
@@ -13,5 +14,6 @@ export default class DomainStore {
     this.paymentTypeStore = new PaymentTypeStore();
     this.userStore = new UserStore();
     this.sliderItemStore = new SliderItemStore();
+    this.payStore = new PayStore();
   }
 }

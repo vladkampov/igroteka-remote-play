@@ -37,15 +37,16 @@ class ConsoleGroupDetails extends Component {
   }
 
   handleClick = () => {
-    const { match: { params: { consoleGroupId, paymentTypeId } }, history } = this.props;
+    const {
+      match: { params: { consoleGroupId, paymentTypeId } },
+      history,
+    } = this.props;
 
     if (!paymentTypeId) {
       return history.push(`/pay/${consoleGroupId}`);
     }
 
-    // eslint-disable-next-line no-console
-    console.log(`Pay for console ${consoleGroupId} with paymentTypeId ${paymentTypeId}`);
-    return null;
+    return history.push(`/pay/status/${consoleGroupId}/${paymentTypeId}`);
   }
 
   render() {
