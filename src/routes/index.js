@@ -14,6 +14,7 @@ import SetNewPassword from './SetNewPassword';
 // errors
 import NotFound from './NotFound';
 import NotAuthorized from './NotAuthorized';
+import NoAvailable from './NoAvailable';
 // authorized
 import Profile from './Profile';
 import ProfileEdit from './ProfileEdit';
@@ -32,6 +33,7 @@ const Wrapped = {
   PasswordRecovery: WrapperDefaultLayout(PasswordRecovery),
   Pay: WrapperDefaultLayout(Pay),
   SetNewPassword: WrapperDefaultLayout(SetNewPassword),
+  NoAvailable: WrapperDefaultLayout(NoAvailable),
   // errors
   NotFound: WrapperDefaultLayout(NotFound),
   NotAuthorized: WrapperDefaultLayout(NotAuthorized),
@@ -73,12 +75,13 @@ export default () => (
         <PrivateRoute path="/profile/:paymentId?" exact component={Wrapped.Profile} />
 
         <PrivateRoute
-          path="/pay/status/:consoleGroupId/:paymentTypeId"
+          path="/pay/status/:consoleGroupId/:paymentTypeId/:redirect?"
           exact
           component={Wrapped.PaymentStatus}
         />
 
         {/* errors */}
+        <Route path="/no-available" component={Wrapped.NoAvailable} />
         <Route path="/not-authorized" component={Wrapped.NotAuthorized} />
         <Route path="/*" component={Wrapped.NotFound} />
       </Switch>

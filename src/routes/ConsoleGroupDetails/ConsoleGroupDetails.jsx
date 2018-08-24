@@ -46,6 +46,8 @@ class ConsoleGroupDetails extends Component {
       return history.push(`/pay/${consoleGroupId}`);
     }
 
+    window.open(`/pay/status/${consoleGroupId}/${paymentTypeId}/redirect`);
+
     return history.push(`/pay/status/${consoleGroupId}/${paymentTypeId}`);
   }
 

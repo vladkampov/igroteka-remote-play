@@ -3,7 +3,7 @@ import { payQiwi, payStatus } from '../api/pay';
 
 export default class PayStore {
   @observable paymentStatus = null;
-  @observable payStatus = 'CREATED'; // CREATED|PENDING|PROCESSING|FAILED|SUCCESS
+  @observable payStatus = 'processing'; // CREATED|PENDING|PROCESSING|FAILED|SUCCESS
   @observable isLoading = false;
   @observable loadingError = null;
 
@@ -23,14 +23,11 @@ export default class PayStore {
   }
 
   @action pay = data => this.makeCall(payQiwi, data)
-    .then(url => {
-      const win = window.open(url, '_blank');
-      win.focus();
-    });
+    .then(url => window.location.replace(url));
 
   @action getPayStatus = () => this.makeCall(payStatus)
-    .then(({ data }) => {
-      this.payStatus = data;
-      return data;
+    .then(status => {
+      this.payStatus = status;
+      return status;
     })
 }

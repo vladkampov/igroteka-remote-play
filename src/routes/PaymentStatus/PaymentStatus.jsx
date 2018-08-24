@@ -12,13 +12,16 @@ import './PaymentStatus.scss';
 class PaymentStatus extends Component {
   componentDidMount() {
     const {
-      match: { params: { consoleGroupId, paymentTypeId } },
+      match: { params: { consoleGroupId, paymentTypeId, redirect } },
       payStore: { pay, getPayStatus },
       userStore: { userId },
+      history,
     } = this.props;
 
-
-    pay({ consoleGroup: consoleGroupId, paytyp: paymentTypeId, id: userId });
+    if (redirect) {
+      pay({ consoleGroup: consoleGroupId, paytyp: paymentTypeId, id: userId })
+        .catch(() => history.push('/no-available'));
+    }
 
     this.statusInterval = setInterval(getPayStatus, 5000);
     // eslint-disable-next-line no-console

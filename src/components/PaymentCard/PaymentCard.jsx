@@ -13,6 +13,8 @@ class PaymentCard extends Component {
       return history.push(`/catalog/consoles/${id}`);
     }
 
+    window.open(`/pay/status/${consoleGroupId}/${id}/redirect`);
+
     return history.push(`/pay/status/${consoleGroupId}/${id}`);
   }
 

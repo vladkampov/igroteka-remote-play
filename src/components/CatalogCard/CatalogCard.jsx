@@ -16,9 +16,10 @@ class CatalogCard extends Component {
       return history.push(`/pay/${id}`);
     }
 
-    // eslint-disable-next-line no-console
-    console.log(`Pay for console ${id} with paymentTypeId ${paymentTypeId}`);
-    return null;
+
+    window.open(`/pay/status/${id}/${paymentTypeId}/redirect`);
+
+    return history.push(`/pay/status/${id}/${paymentTypeId}`);
   }
 
   renderGenreTooltip= text => (
