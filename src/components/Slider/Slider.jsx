@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import { Carousel } from 'react-bootstrap';
+import { Carousel, Button } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import { Loader } from '../';
 import config from '../../config';
@@ -37,10 +38,15 @@ class Slider extends Component {
                 consolegroup ? 'consoles' : 'games'
               )}
             >
-              <img alt="" src={`${config('CORE_API_DOMAIN')}${image.url}`} />
+              <img alt="" src={`${config('CORE_API_DOMAIN')}${image[0] && image[0].url}`} />
               <Carousel.Caption>
                 <h3>{title}</h3>
                 <p>{description}</p>
+                <p>
+                  <Button bsSize="large" className="callToAction">
+                    <FormattedMessage id="slider.playNow" />
+                  </Button>
+                </p>
               </Carousel.Caption>
             </Carousel.Item>
           ))}

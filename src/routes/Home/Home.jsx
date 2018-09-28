@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { Grid, Button, Row, Col, ListGroup, ListGroupItem, FormGroup, FormControl } from 'react-bootstrap';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Loader, GamePad } from '../../components';
+import { Loader, GamePad, Slider } from '../../components';
 import Pay from '../Pay';
 import './Home.scss';
 
@@ -25,7 +25,8 @@ class Home extends Component {
     return (
       <div className="Home">
         <Grid>
-          <div className="top text-center">
+          <Slider />
+          {/* <div className="top text-center">
             <h1 className="title">
               iteka<span className="first">Remote</span><span className="second">Play</span>
             </h1>
@@ -36,7 +37,7 @@ class Home extends Component {
                 <FormattedMessage id="home.callToAction" />
               </Button>
             </p>
-          </div>
+          </div> */}
 
           <div className="reasons">
             <h3 className="section-title"><FormattedMessage id="home.reasons.title" /></h3>

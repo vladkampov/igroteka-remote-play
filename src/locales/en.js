@@ -4,6 +4,9 @@ import { flattenObject } from '../utils';
 export default {
   lang: 'en',
   messages: flattenObject({
+    slider: {
+      playNow: 'PLAY NOW',
+    },
     breadcrumbs: {
       home: 'Home',
       catalog: 'Catalog',

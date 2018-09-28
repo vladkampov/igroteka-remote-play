@@ -1,7 +1,7 @@
 import config from '../config';
 import api from './';
 
-const CORE_END_POINT_URL = `${config('CORE_API_DOMAIN')}/slideritems`;
+const CORE_END_POINT_URL = `${config('CORE_API_DOMAIN')}/slideritem`;
 
 export const getSliderItems = () => api(({ get }) => get(CORE_END_POINT_URL));
 
